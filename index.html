@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Enter name and user type!</h1>
+        <form id="userInfo">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required><br><br>
+            <label>Please select one:</label><br>
+            <input type="radio" name="role" id="student" value="student" required>
+            <label for="student">Student</label><br>
+            <input type="radio" name="role" id="instructor" value="instructor" required>
+            <label for="instructor">Instructor</label><br><br>
+            <button type="submit">ENTER</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('userInfo').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const role = document.querySelector('input[name="role"]:checked').value;
+
+            sessionStorage.setItem('name', name);
+            sessionStorage.setItem('role', role);
+
+            window.location.href = 'info.html';
+        });
+    </script>
+</body>
+</html>

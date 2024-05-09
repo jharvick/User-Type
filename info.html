@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <p id="userInfo"></p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const name = sessionStorage.getItem('name');
+            const role = sessionStorage.getItem('role');
+            const userInfo = document.getElementById('userInfo');
+
+            if (role == 'instructor') {
+                userInfo.textContent = `Welcome Instructor, ${name}!`;
+                userInfo.style.fontWeight = 'bold';
+                createButtons(['1', '2']);
+            } else if (role == 'student') {
+                userInfo.textContent = `Welcome Student, ${name}!`;
+                userInfo.style.fontWeight = 'bold';
+                createButtons(['2', '3']);
+            }
+        });
+
+        function createButtons(buttons) {
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('button-container');
+            buttonContainer.style.marginTop = '50px';
+            buttonContainer.style.textAlign = 'center';
+
+            buttons.forEach(buttonText => {
+                const button = document.createElement('button');
+                button.textContent = buttonText;
+                button.style.margin = '10px';
+                button.style.padding = '10px 20px';
+                button.style.fontSize = '50px';
+                buttonContainer.appendChild(button);
+            });
+
+            document.body.appendChild(buttonContainer);
+        }
+    </script>
+</body>
+</html>
